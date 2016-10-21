@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Date validations</title>
+</head>
+    <title>Add Travel Plans</title>
+</head>
+<body>
+
+    <p><a href="{% url 'travel:logoff' %}">Logoff</a></p>
+    <p><a href="{% url 'travel:home' %}">Home</a></p>
+
+    <h1>Add a Trip</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form action="{% url 'travel:create' %}" method='post'>
+          {% csrf_token %}
+            Destination:<input type="text" name='destination'><br>
+            Description:<input type="text" name='description'><br>
+            Start date<input type = 'date' name='start_date'><br>
+            End date<input type = 'date' name='end_date'><br>
+            <input type="submit" value="add">
+         </form>
+</body>
+</html>
